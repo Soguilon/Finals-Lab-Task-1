@@ -1,1 +1,213 @@
-s
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finals Lab Task 1 - MySQL Basics</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(120deg, #000 30%, #020f1f 70%);
+      color: #00bfff;
+      overflow-x: hidden;
+      animation: bgShift 15s ease-in-out infinite alternate;
+      transition: background 2s ease-in-out;
+    }
+
+    @keyframes bgShift {
+      0% { background-position: left top; }
+      100% { background-position: right bottom; }
+    }
+
+    header {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      text-align: center;
+      font-size: 2rem;
+      color: #00bfff;
+      text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff;
+      animation: neonGlow 2s infinite alternate;
+      box-shadow: 0 0 15px #00bfff;
+    }
+
+    section {
+      padding: 30px 20px;
+      max-width: 900px;
+      margin: auto;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.6);
+      transition: transform 0.3s ease-in-out;
+      animation: fadeInUp 1.5s ease-in-out;
+    }
+
+    section:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00bfff;
+    }
+
+    h2 {
+      color: #00bfff;
+      text-shadow: 0 0 5px #00bfff;
+      border-bottom: 2px solid #00bfff;
+      padding-bottom: 5px;
+      animation: glowPulse 2s infinite alternate;
+    }
+
+    .screenshot img {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #00bfff;
+      animation: floatImage 4s ease-in-out infinite;
+    }
+
+    @keyframes glowPulse {
+      0% { text-shadow: 0 0 5px #00bfff, 0 0 10px #00bfff; }
+      100% { text-shadow: 0 0 20px #00bfff, 0 0 30px #00bfff; }
+    }
+
+    @keyframes floatImage {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes neonGlow {
+      from { box-shadow: 0 0 10px #00bfff; }
+      to { box-shadow: 0 0 25px #00bfff, 0 0 50px #00bfff; }
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .download-link {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #00bfff;
+      color: #000;
+      text-decoration: none;
+      border-radius: 5px;
+      box-shadow: 0 0 10px #00bfff;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .download-link:hover {
+      background-color: #0099cc;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00bfff;
+    }
+  </style>
+</head>
+<body>
+  <header>Finals Lab Task 1 - MySQL Basics</header>
+
+  <section>
+    <p>This portfolio is about learning MySQL basics through a multi-level company database. It includes tasks like writing SQL queries, creating table structures, and making an ER diagram or relational schema. The portfolio will also include SQL copies of the database and table structures to show how the database is built.</p>
+    
+    <p>Download the Word file: 
+      <a class="download-link" href="https://github.com/user-attachments/files/19615214/Soguilon.Carl.Asnef.B.FINALS.EDM.SQL.docx" download>Download Word File</a>
+    </p>
+  </section>
+
+  <section>
+    <h2>Step by Step Process</h2>
+    <p><strong>1. Create the <code>employees</code> table:</strong></p>
+    <ul>
+      <li>Define <code>employee_id</code> as a unique integer, auto-increment, and primary key.</li>
+      <li>Define <code>employee_name</code> as a VARCHAR (up to 255 characters), and make it not null.</li>
+      <li>Define <code>manager_id</code> as an integer, which will be a foreign key referencing <code>employee_id</code> from the same table.</li>
+    </ul>
+
+    <p><strong>2. Create the <code>departments</code> table:</strong></p>
+    <ul>
+      <li>Define <code>department_id</code> as a unique integer, auto-increment, and primary key.</li>
+      <li>Define <code>department_name</code> as a VARCHAR (up to 255 characters), and make it not null.</li>
+    </ul>
+
+    <p><strong>3. Create the <code>employee_departments</code> table:</strong></p>
+    <ul>
+      <li>Define <code>employee_id</code> as an integer, which will be a foreign key referencing <code>employee_id</code> in the <code>employees</code> table.</li>
+      <li>Define <code>department_id</code> as an integer, which will be a foreign key referencing <code>department_id</code> in the <code>departments</code> table.</li>
+      <li>Set a composite primary key on the combination of <code>employee_id</code> and <code>department_id</code>.</li>
+    </ul>
+
+    <p><strong>4. Create the <code>employee_projects</code> table:</strong></p>
+    <ul>
+      <li>Define <code>employee_id</code> as an integer, which will be a foreign key referencing <code>employee_id</code> in the <code>employees</code> table.</li>
+      <li>Define <code>project_name</code> as a VARCHAR (up to 255 characters), and make it not null.</li>
+    </ul>
+
+    <p><strong>5. Create the <code>managers</code> table:</strong></p>
+    <ul>
+      <li>Define <code>manager_id</code> as a unique integer, auto-increment, and primary key.</li>
+      <li>Define <code>employee_id</code> as an integer, which will be a foreign key referencing <code>employee_id</code> in the <code>employees</code> table.</li>
+    </ul>
+
+    <h2>Screenshots</h2>
+
+    <p><strong>Query Statements</strong></p>
+    <p><strong>1. Employee Table</strong></p>
+    <div class="screenshot">
+      <img src="https://github.com/user-attachments/assets/9d797229-c578-4a9d-9e41-9eec050611b9" alt="Employee Table Screenshot">
+    </div>
+
+    <p><strong>2. Department Table</strong></p>
+    <div class="screenshot">
+      <img src="https://github.com/user-attachments/assets/3943d3ae-7b16-4ac8-9fcd-ea3a935107bf" alt="Department Table Screenshot">
+    </div>
+
+    <p><strong>3. Employee Department Table</strong></p>
+    <div class="screenshot">
+      <img src="https://github.com/user-attachments/assets/7c0d9e00-be51-4f32-bf15-b47c1db7cfbe" alt="Employee Department Table Screenshot">
+    </div>
+
+    <p><strong>4. Employee Project Table</strong></p>
+    <div class="screenshot">
+      <img src="https://github.com/user-attachments/assets/2065f412-b9f0-45f8-9bd7-bbe88298b244" alt="Employee Project Table Screenshot">
+    </div>
+
+    <p><strong>5. Manager Table</strong></p>
+    <div class="screenshot">
+      <img src="https://github.com/user-attachments/assets/11885937-bb10-4287-ada6-c3b0074dfd21" alt="Manager Table Screenshot">
+    </div>
+
+    <h2>Table Structure</h2>
+
+    <p><strong>1. Employee Table</strong></p>
+    <div class="screenshot">
+      <img src="https://github.com/user-attachments/assets/bfa3e1a0-31e5-4f50-96a7-ab2e44f8fa38" alt="Employee Table Structure">
+    </div>
+
+    <p><strong>2. Department Table</strong></p>
+    <div class="screenshot">
+      <img src="https://github.com/user-attachments/assets/09c1e839-6684-4c39-a5e4-a8cd09fc1345" alt="Department Table Structure">
+    </div>
+
+    <p><strong>3. Employee Department Table</strong></p>
+    <div class="screenshot">
+      <img src="https://github.com/user-attachments/assets/42f83cf1-3f70-4b4f-88f4-c333284783e0" alt="Employee Department Table Structure">
+    </div>
+
+    <p><strong>4. Employee Project Table</strong></p>
+    <div class="screenshot">
+      <img src="https://github.com/user-attachments/assets/dd393af6-c71a-4beb-b3c8-29dc97dae61f" alt="Employee Project Table Structure">
+    </div>
+
+    <p><strong>5. Manager Table</strong></p>
+    <div class="screenshot">
+      <img src="https://github.com/user-attachments/assets/0b357143-4fda-4059-8235-1444b933d6ae" alt="Manager Table Structure">
+    </div>
+
+    <h2>EER Diagram</h2>
+    <div class="screenshot">
+      <img src="https://github.com/user-attachments/assets/b8c42cda-fe0b-420f-92de-d9a7e531f3f3" alt="EER Diagram">
+    </div>
+  </section>
+</body>
+</html>
+
